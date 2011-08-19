@@ -1,12 +1,14 @@
 exports.sampleFunction = function () {
-	console.log("Hello from sampleFunction");
-	console.log(JSON.stringify(global.Stats));
+console.log("Hello from sampleFunction"); 
+console.log(JSON.stringify(global.Stats)); 
 };
 
 exports.anotherFunction = function() {
-	"This is a function".split(" ").forEach(function(word) {
-		console.log("Printing: "+word);
-	});
-	console.log(JSON.stringify(global.Stats));
+"This is a function".split(" ").forEach(function(word) {
+console.log("Printing: "+word); 
+});
+console.log(JSON.stringify(global.Stats)); 
 };
+
+
 

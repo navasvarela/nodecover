@@ -12,3 +12,5 @@ console.log(JSON.stringify(global.Stats)); ncover.lineCovered('examples/sample.j
 };
 
 
+
+
