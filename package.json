@@ -1,7 +1,18 @@
 {
-	"name" : "ncover",
+	"name" : "nodecover",
+	"description" : "A lightweight, pure javascript code coverage tool and library for nodejs",
+	"maintainers": 
+	[ { "name": "Juan M Salamanca",
+		"web": "https://github.com/jumisz"
+	}
+	],
 	"version" : "0.1.0",
-	"description" : "Pure javascript code coverage for nodejs applications",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jumisz/nodecoverage"
+	},
+	"bugs": { "web": "https://github.com/jumisz/nodecoverage/issues" },
+	"directories": { "lib": "./lib"},
 	"dependencies" : {
 		"nodeunit" : "0.5.3",
 		"winston" : "0.3.5"
