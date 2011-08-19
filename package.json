@@ -1,0 +1,9 @@
+{
+	"name" : "ncover",
+	"version" : "0.1.0",
+	"description" : "Pure javascript code coverage for nodejs applications",
+	"dependencies" : {
+		"async" : "0.1.9",
+		"nodeunit" : "0.5.3"
+	}
+}
