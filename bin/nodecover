@@ -2,7 +2,7 @@
 
 var args = require('argsparser').parse();
 
-console.log('args: '+JSON.stringify(args));
+// console.log('args: '+JSON.stringify(args));
 var usage = "USAGE 1: nodecover -s module.js moduledir -t testmodule.js testdir... \n" +
 			"         Will generate coverage report for the given source modules for the tests given\n"+
 			"USAGE 2: nodecover -report module.js\n" +
@@ -10,20 +10,28 @@ var usage = "USAGE 1: nodecover -s module.js moduledir -t testmodule.js testdir.
 			"Options: \n"+
 			"  -s [files] [dirs] List of source paths, both files and directories are valid\n" +
 			"  -t [files] [dirs] List of test paths, both files and directories are valid\n" +
-			"  -report file      Print detailed coverage report for the given file\n." +
+			"  -report file      Print detailed coverage report for the given file\n" +
 			"  -r file           Same as -report\n";   
 
+var arrayFromString = function(s) {
+	var array = [];
+    array.push(s);
+	return array;
+};
+
 if (args['-report'] || args['-r']) {
-	var module = '';
-	if (args['report']) {
-		module = args['report'];
+	var file = '';
+	if (args.report) {
+		file = args.report;
 	} else {
-		module = args['-r'];
+		file = args['-r'];
 	}
-	require('../lib/reporter.js').printModuleReport(module);
+	require('../lib/reporter.js').printModuleReport(file);
 }
 else if (args['-s'] && args['-t']){
-	require('../lib/nodecover.js').process(args['-s'], args['-t']);
+	var sourceArgs = args['-s'] instanceof Array ? args['-s'] : arrayFromString(args['-s']);
+	var testArgs = args['-t'] instanceof Array ? args['-t'] : arrayFromString(args['-t']);
+	require('../lib/nodecover.js').process(sourceArgs, testArgs);
 } else {
 	console.log(usage);	
 }
