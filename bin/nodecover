@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+var args = require('argsparser').parse();
+
+console.log('args: '+JSON.stringify(args));
+var usage = "USAGE 1: nodecover -s module.js moduledir -t testmodule.js testdir... \n" +
+			"         Will generate coverage report for the given source modules for the tests given\n"+
+			"USAGE 2: nodecover -report module.js\n" +
+			"         Will print to the console the detailed coverage report for the given module file, using an existing coverage report.\n" +
+			"Options: \n"+
+			"  -s [files] [dirs] List of source paths, both files and directories are valid\n" +
+			"  -t [files] [dirs] List of test paths, both files and directories are valid\n" +
+			"  -report file      Print detailed coverage report for the given file\n." +
+			"  -r file           Same as -report\n";   
+
+if (args['-report'] || args['-r']) {
+	var module = '';
+	if (args['report']) {
+		module = args['report'];
+	} else {
+		module = args['-r'];
+	}
+	require('../lib/reporter.js').printModuleReport(module);
+}
+else if (args['-s'] && args['-t']){
+	require('../lib/nodecover.js').process(args['-s'], args['-t']);
+} else {
+	console.log(usage);	
+}
+
+
+
