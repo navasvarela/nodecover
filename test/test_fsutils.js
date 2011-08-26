@@ -17,13 +17,14 @@ module.exports = testCase({
 		,
 		"Should copy file": function(test) {
 			var origSize, copySize;
-			fsutils.copyFile('README','README.bak', null);
+			fsutils.copyFile('README.md','README.bak', null);
             test.ok(fs.statSync('README.bak'));
-			origSize = fs.statSync('README').size;
+			origSize = fs.statSync('README.md').size;
 			copySize = fs.statSync('README.bak').size;
 			test.equal(origSize,copySize);
 			fs.unlink('./README.bak');			
 			test.done();
-		}
+		},
+		
 });
 
