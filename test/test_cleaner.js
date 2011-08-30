@@ -69,8 +69,8 @@ module.exports = testCase({
 		test.done();
 	},
 	"Should append after if-else block with nested for loop": function(test) {
-		var testLines = ['if(echo) ','for (too) blah;', 'else', 'bloo;'];
-		var shouldBeLines = ['if(echo) ','for (too) blah;', 'else', 'bloo;}'];
+		var testLines = ['if(echo) ','for (too)',' blah;', 'else', 'bloo;'];
+		var shouldBeLines = ['if(echo) ','for (too)',' blah;', 'else', 'bloo;}'];
 		test.deepEqual(shouldBeLines,cleaner.appendAfterIfElseBlock(0,testLines, '}') );
 		test.done();
 		
