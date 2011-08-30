@@ -62,7 +62,7 @@ module.exports = testCase({
 		var testLines = ['if(echo) {','blah;', ' } else bloo;'];
 		var shouldBeLines = ['if(echo) {','blah;', '} else bloo;}}'];
 		console.log(JSON.stringify(shouldBeLines));
-		test.deepEqual(shouldBeLines,cleaner.appendAfterIfElseBlock(0,testLines, '}'), 'should be equal to '+ JSON.stringify(testLines));
+		test.deepEqual(shouldBeLines,cleaner.appendAfterIfElseBlock(0,testLines, '}') );
 		test.done();
 	}
 	
