@@ -26,5 +26,12 @@ module.exports = testCase({
 			test.done();
 		},
 		
+		"Should walk directory": function(test) {
+			var listOfFiles = fsutils.getListOfFiles('../',/\.js$/);
+			test.ok(listOfFiles.indexOf(__filename) > 0, 'the returned list of files should contain '+__filename);
+			test.done();
+		}
+		
 });
+
 

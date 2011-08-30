@@ -36,6 +36,20 @@ module.exports = testCase({
 		test.deepEqual(shouldBeLines,cleaner.cleanForLoops(testLines));
 		test.done();
 	},
+	"Should cleanup nested for loops": function(test) {
+		
+		var testLines = ['for (i=0;i<blah;i++)','for(j=0;j<blablah;j++) ', 'do blah;'];
+		var shouldBeLines = ['for (i=0;i<blah;i++) {','for(j=0;j<blablah;j++)  {', 'do blah;}}'];
+		test.deepEqual(shouldBeLines,cleaner.cleanForLoops(testLines));
+		test.done();
+	},
+	"Should cleanup nested for loops with if-else": function(test) {
+		
+		var testLines = ['for (i=0;i<blah;i++)','for(j=0;j<blablah;j++) ', 'if(echo) blah;', 'else bloo;'];
+		var shouldBeLines = ['for (i=0;i<blah;i++) {','for(j=0;j<blablah;j++)  {', 'if(echo) blah;', 'else bloo;}}'];
+		test.deepEqual(shouldBeLines,cleaner.cleanForLoops(testLines));
+		test.done();
+	}
 	
 	
 });
