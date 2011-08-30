@@ -52,15 +52,15 @@ module.exports = testCase({
 	},
 	"Should cleanup nested for loops with if-else blocks": function(test) {
 		
-		var testLines = ['for (i=0;i<blah;i++)','for(j=0;j<blablah;j++) ', 'if(echo) {','blah;', ' } else bloo;'];
+		var testLines = ['for (i=0;i<blah;i++)','for(j=0;j<blablah;j++) ', 'if(echo) {','blah;', '} else bloo;'];
 		var shouldBeLines = ['for (i=0;i<blah;i++) {','for(j=0;j<blablah;j++)  {', 'if(echo) {','blah;', '} else bloo;}}'];
 		test.deepEqual(shouldBeLines,cleaner.cleanForLoops(testLines));
 		test.done();
 	},
 	"Should append after if-else block": function(test) {
 
-		var testLines = ['if(echo) {','blah;', ' } else bloo;'];
-		var shouldBeLines = ['if(echo) {','blah;', '} else bloo;}}'];
+		var testLines = ['if(echo) {','blah;', '} else bloo;'];
+		var shouldBeLines = ['if(echo) {','blah;', '} else bloo;}'];
 		console.log(JSON.stringify(shouldBeLines));
 		test.deepEqual(shouldBeLines,cleaner.appendAfterIfElseBlock(0,testLines, '}') );
 		test.done();
