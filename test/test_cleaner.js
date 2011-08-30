@@ -51,20 +51,31 @@ module.exports = testCase({
 		test.done();
 	},
 	"Should cleanup nested for loops with if-else blocks": function(test) {
-		
 		var testLines = ['for (i=0;i<blah;i++)','for(j=0;j<blablah;j++) ', 'if(echo) {','blah;', '} else bloo;'];
 		var shouldBeLines = ['for (i=0;i<blah;i++) {','for(j=0;j<blablah;j++)  {', 'if(echo) {','blah;', '} else bloo;}}'];
 		test.deepEqual(shouldBeLines,cleaner.cleanForLoops(testLines));
 		test.done();
 	},
 	"Should append after if-else block": function(test) {
-
 		var testLines = ['if(echo) {','blah;', '} else bloo;'];
 		var shouldBeLines = ['if(echo) {','blah;', '} else bloo;}'];
-		console.log(JSON.stringify(shouldBeLines));
 		test.deepEqual(shouldBeLines,cleaner.appendAfterIfElseBlock(0,testLines, '}') );
 		test.done();
+	},
+	"Should append after if-else block when else is statement and in next line": function(test) {
+		var testLines = ['if(echo) {','blah;', '} else', 'bloo;'];
+		var shouldBeLines = ['if(echo) {','blah;', '} else', 'bloo;}'];
+		test.deepEqual(shouldBeLines,cleaner.appendAfterIfElseBlock(0,testLines, '}') );
+		test.done();
+	},
+	"Should append after if-else block with nested for loop": function(test) {
+		var testLines = ['if(echo) ','for (too) blah;', 'else', 'bloo;'];
+		var shouldBeLines = ['if(echo) ','for (too) blah;', 'else', 'bloo;}'];
+		test.deepEqual(shouldBeLines,cleaner.appendAfterIfElseBlock(0,testLines, '}') );
+		test.done();
+		
 	}
+	
 	
 	
 });
