@@ -75,6 +75,13 @@ module.exports = testCase({
 		test.done();
 		
 	},
+	"Should clean if-else block with nested for loop": function(test) {
+		var testLines = ['if(echo) ','for (too)',' blah;', 'else', 'bloo;'];
+		var shouldBeLines = ['if(echo) { ','for (too) {',' blah;} } ', 'else { ', 'bloo; } '];
+		test.deepEqual(shouldBeLines,cleaner.clean(testLines));
+		test.done();
+		
+	},
 	"Should cleanup for loop with if-else statements in several lines": function(test) {
 		var testLines = ['for (i=0;i<blah;i++)','if(echo)',' blah;', 'else',' bloo;'];
 		var shouldBeLines = ['for (i=0;i<blah;i++) {','if(echo) { ',' blah; } ', 'else { ',' bloo; } }'];
@@ -87,8 +94,18 @@ module.exports = testCase({
 		var testLines = ['for (i=0;i<blah;i++) {','if(echo)',' blah;', 'else',' bloo; }'];
 		test.ok(cleaner.isLineInsideBlock(1,[0],testLines));
 		test.done();	
+	},
+	"Should leave line as it is": function(test) {
+		var testLines = ['var uuid = require(\'uuid\');', 'if (echo) true;'];
+		test.deepEqual(testLines[0], cleaner.clean(testLines)[0]);
+		test.done();
+	},
+	"Should clean if-else blocks inside for block": function(test) {
+		
+		var testLines = ['for (i=0;i<blah;i++) {','if(echo)',' blah;', 'else',' bloo; }'];
+		var shouldBeLines = ['for (i=0;i<blah;i++) {','if(echo) { ',' blah; } ', 'else { ',' bloo; } } '];
+		test.deepEqual(shouldBeLines,cleaner.clean(testLines));
+		test.done();
 	}
-	
-	
 	
 });
