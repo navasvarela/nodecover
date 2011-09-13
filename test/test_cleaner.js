@@ -123,7 +123,10 @@ module.exports = testCase({
 	},
 	"Should not clean plain for loops":  function(test) {
 		var testLines = ['function bitSize(x) {','var j,z,w;','for (j=x.length-1; (x[j]==0) && (j>0); j--);','for (z=0,w=x[j]; w; (w>>=1),z++);','z+=bpe*j;'];
-		test.strictEqual(testLines,cleaner.clean(testLines));
+		var cleanLines = cleaner.clean(testLines);
+		console.log('testLines:'+JSON.stringify(testLines));
+		console.log('cleanLines: '+JSON.stringify(cleanLines));
+		test.deepEqual(testLines,cleaner.clean(testLines));
 		test.done();
 	},
 	"Should clean if-for-if blocks":  function(test) {
@@ -132,6 +135,20 @@ module.exports = testCase({
 		test.deepEqual(shouldBeLines,cleaner.clean(testLines));	
 		test.done();
 	},
- 
+    "Should not clean this plain for loop": function(test) {
+		var testLines = ['for (bpe=0; (1<<(bpe+1)) > (1<<bpe); bpe++); // bpe=something ','bpe>>=1;'];
+		var cleanLines = cleaner.clean(testLines);
+		console.log('testLines:'+JSON.stringify(testLines));
+		console.log('cleanLines: '+JSON.stringify(cleanLines));
+		
+		test.deepEqual(testLines,cleanLines);
+		test.done();
+	},
+
+	"Should find closing bracket with several nested brackets" : function(test) {
+		var line = 'for (bpe=0; (1<<(bpe+1)) > (1<<bpe); bpe++); // bpe=something ';
+		test.equal(42, cleaner.closingBracket(line));		
+		test.done();
+	}
 	
 });
