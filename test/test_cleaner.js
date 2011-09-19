@@ -89,6 +89,12 @@ module.exports = testCase({
 		test.done();
 		
 	},
+	"Should clean single line ifs with comments": function(test) {
+		var testLines = ['if(echo) do this; // comment'];
+		var shouldBeLines = ['if(echo){ do this; }'];
+		test.deepEqual(shouldBeLines, cleaner.clean(testLines));
+		test.done();
+	},
 	"Should cleanup for loop with if-else statements in several lines": function(test) {
 		var testLines = ['for (i=0;i<blah;i++)','if(echo)',' blah;', 'else',' bloo;'];
 		var shouldBeLines = ['for (i=0;i<blah;i++){','if(echo){',' blah;}', 'else{',' bloo;}}'];
@@ -148,6 +154,18 @@ module.exports = testCase({
 	"Should find closing bracket with several nested brackets" : function(test) {
 		var line = 'for (bpe=0; (1<<(bpe+1)) > (1<<bpe); bpe++); // bpe=something ';
 		test.equal(42, cleaner.closingBracket(line));		
+		test.done();
+	},
+	"Should not process for word in comment" : function(test) {
+		var testLines = ['//do x=x*y mod n for bigInts x,y,n.','//for something','function f() {','if (something) { do it;}'];
+		console.log(JSON.stringify(cleaner.clean(testLines)));
+		test.deepEqual(testLines,cleaner.clean(testLines));
+		test.done();
+	},
+	"Should clean if blocks with nested try catch block":  function (test) {
+		var testLines = ['if (echo)','try {','do this;','} catch(e) {','throw e;}'];
+		var shouldBeLines = ['if (echo) {', 'try {','do this;','} catch(e) {','throw e;}}']; 
+		test.deepEqual(shouldBeLines, cleaner.clean(testLines));
 		test.done();
 	}
 	
