@@ -5,8 +5,8 @@ module.exports = testCase({
 	"Should find lines with for" : function(test) {
 		var testLines = ['First linefor', 'second line for loop 1', 'for loop 2', 'This is not a forloop'];
 		var linesWithFor = cleaner.findLinesWithFor(testLines);
-		test.equal(2,linesWithFor.length);
-		test.deepEqual([1,2], linesWithFor);
+		test.equal(1,linesWithFor.length);
+		test.deepEqual([2], linesWithFor);
 		test.done();	
 	},
 
