@@ -164,7 +164,7 @@ module.exports = testCase({
 	},
 	"Should clean if blocks with nested try catch block":  function (test) {
 		var testLines = ['if (echo)','try {','do this;','} catch(e) {','throw e;}'];
-		var shouldBeLines = ['if (echo) {', 'try {','do this;','} catch(e) {','throw e;}}']; 
+		var shouldBeLines = ['if (echo){', 'try {','do this;','} catch(e) {','throw e;}}']; 
 		test.deepEqual(shouldBeLines, cleaner.clean(testLines));
 		test.done();
 	}

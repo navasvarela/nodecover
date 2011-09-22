@@ -3,3 +3,4 @@ log
 reports
 *.swp
 nodecover-stats.json
+filelist.json
