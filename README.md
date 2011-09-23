@@ -46,7 +46,7 @@ Displays a report with green lines on the lines that were used and red were miss
 
 TODO
 ----
-  - Add support to vows.js
-  - Add support to jasmine.js
+  - Add support for vows.js
+  - Add support for jasmine.js
 
 
