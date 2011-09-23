@@ -1,25 +1,27 @@
 {
-	"name" : "nodecover",
-	"description" : "A lightweight, pure javascript code coverage tool and library for nodejs",
-	"maintainers": 
-	[ { "name": "Juan M Salamanca",
-		"web": "https://github.com/jumisz"
-	}
-	],
-	"version" : "0.1.0",
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/jumisz/nodecoverage.git"
-	},
-	"bugs": { "web": "https://github.com/jumisz/nodecoverage/issues" },
-	"directories": { "lib": "./lib", "bin": "./bin"},
-	"dependencies" : {
-		"nodeunit" : "0.5.3",
-		"winston" : "0.3.5",
-		"cli-color" : "0.1.3",
-		"argsparser" : "0.0.6"
-	},
-	"bin" : {
-		"nodecover": "./bin/nodecover"
-	}
+        "name" : "nodecover",
+        "description" : "A lightweight, pure javascript code coverage tool and library for nodejs",
+        "author": "Juan M Salamanca <juan.m.salamanca@gmail.com>",
+        "keywords": ["test","node","code coverage"],
+        "maintainers": 
+        [ { "name": "Juan M Salamanca",
+                "web": "https://github.com/jumisz"
+        }
+        ],
+        "version" : "0.1.1",
+        "repository": {
+                "type": "git",
+                "url": "git://github.com/jumisz/nodecover.git"
+        },
+        "bugs": { "web": "https://github.com/jumisz/nodecover/issues" },
+        "directories": { "lib": "./lib", "bin": "./bin"},
+        "dependencies" : {
+                "nodeunit" : "0.5.3",
+                "winston" : "0.3.5",
+                "cli-color" : "0.1.3",
+                "argsparser" : "0.0.6"
+        },
+        "bin" : {
+                "nodecover": "./bin/nodecover"
+        }
 }
